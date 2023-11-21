@@ -1,4 +1,4 @@
-package com.hd.mvi_clean_architecture
+package com.hd.mvi_clean_arch
 
 import org.junit.Test
 
