@@ -6,12 +6,12 @@ plugins {
 
 android {
     namespace = "com.hd.mvi_clean_arch"
-    compileSdk = 34
+    compileSdk = ProjectConfig.Android.compileSdk
 
     defaultConfig {
         applicationId = "com.hd.mvi_clean_arch"
-        minSdk = 24
-        targetSdk = 34
+        minSdk = ProjectConfig.Android.minSdk
+        targetSdk = ProjectConfig.Android.targetSdk
         versionCode = 1
         versionName = "1.0"
 
@@ -41,24 +41,23 @@ android {
 }
 
 dependencies {
-    implementation("androidx.core:core-ktx:1.12.0")
-    implementation("androidx.appcompat:appcompat:1.6.1")
-    implementation("com.google.android.material:material:1.10.0")
-    implementation("androidx.constraintlayout:constraintlayout:2.1.4")
+    // Core
+    implementation(Dependencies.Core.androidXCore)
+    implementation(Dependencies.Core.appCompat)
+    implementation(Dependencies.Core.material)
+    implementation(Dependencies.Core.constraintLayout)
 
-    // Dagger
-    implementation("com.google.dagger:dagger:2.48")
-    kapt("com.google.dagger:dagger-compiler:2.48")
+    // DI
+    implementation(Dependencies.DI.dagger)
+    kapt(Dependencies.DI.daggerKapt)
 
     // Lifecycle
-    val lifecycleVersion = "2.6.2"
-    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycleVersion")
-    implementation("androidx.lifecycle:lifecycle-runtime-ktx:$lifecycleVersion")
-    implementation("androidx.lifecycle:lifecycle-extensions:2.2.0")
-    api("androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycleVersion")
+    implementation(Dependencies.Lifecycle.lifeCycleViewModel)
+    implementation(Dependencies.Lifecycle.lifeCycleRuntime)
+    implementation(Dependencies.Lifecycle.lifeCycleExtension)
 
     // Modules
-    implementation(project(mapOf("path" to ":presentation")))
-    implementation(project(mapOf("path" to ":data")))
-    implementation(project(mapOf("path" to ":domain")))
+    implementation(project(Dependencies.Modules.data))
+    implementation(project(Dependencies.Modules.domain))
+    implementation(project(Dependencies.Modules.presentation))
 }

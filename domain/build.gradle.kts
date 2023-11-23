@@ -6,10 +6,10 @@ plugins {
 
 android {
     namespace = "com.hd.domain"
-    compileSdk = 34
+    compileSdk = ProjectConfig.Android.compileSdk
 
     defaultConfig {
-        minSdk = 24
+        minSdk = ProjectConfig.Android.minSdk
         consumerProguardFiles("consumer-rules.pro")
     }
 
@@ -33,7 +33,6 @@ android {
 
 dependencies {
 
-    // Coroutines - Flow
-    val coroutines_version = "1.7.1"
-    api("org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutines_version")
+    // Coroutines
+    api(Dependencies.Coroutines.coroutinesCore)
 }

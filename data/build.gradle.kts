@@ -6,10 +6,10 @@ plugins {
 
 android {
     namespace = "com.hd.data"
-    compileSdk = 34
+    compileSdk = ProjectConfig.Android.compileSdk
 
     defaultConfig {
-        minSdk = 24
+        minSdk = ProjectConfig.Android.minSdk
         consumerProguardFiles("consumer-rules.pro")
     }
 
@@ -37,13 +37,10 @@ android {
 }
 
 dependencies {
-    // Dagger
-    api("com.google.dagger:dagger:2.48")
-    kapt("com.google.dagger:dagger-compiler:2.48")
+    // Core
+    implementation(Dependencies.Core.javaxInject)
+    implementation(Dependencies.Core.preferences)
 
-    // Kotlin
-    api("androidx.preference:preference-ktx:1.2.1")
-
-    // Modules
-    implementation(project(mapOf("path" to ":domain")))
+    // Module
+    implementation(project(Dependencies.Modules.domain))
 }
