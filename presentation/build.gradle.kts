@@ -56,4 +56,5 @@ dependencies {
 
     // Modules
     implementation(project(Dependencies.Modules.domain))
+    testImplementation(project(Dependencies.Modules.data))
 }
