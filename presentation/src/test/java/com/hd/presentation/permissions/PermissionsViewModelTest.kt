@@ -70,9 +70,9 @@ class PermissionsViewModelTest {
         runTest {
             // Arrange
             val permissionsResponseMock = listOf(
-                PermissionDTO(PermissionTypeDTO.AUTO_START, granted = true),
-                PermissionDTO(PermissionTypeDTO.ALARM, granted = true),
-                PermissionDTO(PermissionTypeDTO.NOTIFICATIONS, granted = true)
+                PermissionDTO(PermissionTypeDTO.AUTO_START, granted = true, isOptional = true),
+                PermissionDTO(PermissionTypeDTO.ALARM, granted = true, isOptional = false),
+                PermissionDTO(PermissionTypeDTO.NOTIFICATIONS, granted = true, isOptional = false)
             )
 
             val permissionsMock = PermissionsDTO(
@@ -110,9 +110,9 @@ class PermissionsViewModelTest {
         runTest {
             // Arrange
             val permissionsResponseMock = listOf(
-                PermissionDTO(PermissionTypeDTO.AUTO_START, granted = false),
-                PermissionDTO(PermissionTypeDTO.ALARM, granted = false),
-                PermissionDTO(PermissionTypeDTO.NOTIFICATIONS, granted = false)
+                PermissionDTO(PermissionTypeDTO.AUTO_START, granted = false, isOptional = true),
+                PermissionDTO(PermissionTypeDTO.ALARM, granted = false, isOptional = false),
+                PermissionDTO(PermissionTypeDTO.NOTIFICATIONS, granted = false, isOptional = false)
             )
 
             val permissionsMock = PermissionsDTO(
@@ -151,9 +151,9 @@ class PermissionsViewModelTest {
         runTest {
             // Arrange
             val permissionsResponseMock = listOf(
-                PermissionDTO(PermissionTypeDTO.AUTO_START, granted = false),
-                PermissionDTO(PermissionTypeDTO.ALARM, granted = false),
-                PermissionDTO(PermissionTypeDTO.NOTIFICATIONS, granted = false)
+                PermissionDTO(PermissionTypeDTO.AUTO_START, granted = false, isOptional = true),
+                PermissionDTO(PermissionTypeDTO.ALARM, granted = false, isOptional = false),
+                PermissionDTO(PermissionTypeDTO.NOTIFICATIONS, granted = false, isOptional = false)
             )
 
             val permissionsMock = PermissionsDTO(

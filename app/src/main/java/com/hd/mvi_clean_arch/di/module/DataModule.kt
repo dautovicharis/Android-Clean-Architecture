@@ -5,10 +5,11 @@ import com.hd.data.source.local.SharedPreferenceClient
 import dagger.Module
 import dagger.Provides
 import javax.inject.Singleton
+
 @Module
 class DataModule {
 
     @Singleton
     @Provides
-    fun providePreference (appContext: Context) = SharedPreferenceClient(appContext)
+    fun providePreference(appContext: Context) = SharedPreferenceClient(appContext)
 }
