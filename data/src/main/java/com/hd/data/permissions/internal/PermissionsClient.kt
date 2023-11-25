@@ -1,4 +1,4 @@
-package com.hd.data.permissions
+package com.hd.data.permissions.internal
 
 import android.content.Context
 import com.hd.data.permissions.mapper.toPermissions
@@ -11,12 +11,12 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flowOf
 import javax.inject.Inject
 
-class PermissionsClient @Inject constructor(
+internal class PermissionsClient @Inject internal constructor(
     private val preference: SharedPreferenceClient,
     private val appContext: Context,
-    private val autoStartPermissionChecker: AutoStartPermissionChecker,
-    private val alarmPermissionChecker: AlarmPermissionChecker,
-    private val notificationPermissionChecker: NotificationPermissionChecker
+    private val autoStartPermissionChecker: DefaultAutoStartPermissionChecker,
+    private val alarmPermissionChecker: DefaultAlarmPermissionChecker,
+    private val notificationPermissionChecker: DefaultNotificationPermissionChecker
 ) {
 
     fun getPermissions(config: PermissionsConfiguration): Flow<Permissions> {

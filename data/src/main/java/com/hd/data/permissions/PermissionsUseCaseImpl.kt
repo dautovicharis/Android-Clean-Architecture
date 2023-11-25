@@ -2,6 +2,10 @@ package com.hd.data.permissions
 
 import android.content.Context
 import android.os.Build
+import com.hd.data.permissions.internal.DeviceType
+import com.hd.data.permissions.internal.PermissionConfig
+import com.hd.data.permissions.internal.PermissionsClient
+import com.hd.data.permissions.internal.PermissionsConfiguration
 import com.hd.data.permissions.model.PermissionTypeDTO
 import com.hd.domain.permissions.model.Permissions
 import com.hd.domain.permissions.usecase.PermissionsUseCase

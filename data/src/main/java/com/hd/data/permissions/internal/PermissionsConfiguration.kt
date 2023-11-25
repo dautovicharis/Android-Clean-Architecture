@@ -1,9 +1,9 @@
-package com.hd.data.permissions
+package com.hd.data.permissions.internal
 
 import android.os.Build
 import com.hd.data.permissions.model.PermissionTypeDTO
 
-enum class DeviceType {
+internal enum class DeviceType {
     XIAOMI,
     OPPO,
     VIVO,
@@ -13,7 +13,7 @@ enum class DeviceType {
     ALL
 }
 
-data class PermissionConfig(
+internal data class PermissionConfig(
     val permissionType: PermissionTypeDTO,
     val minApiLevel: Int = Build.VERSION_CODES.BASE,
     val supportedDevices: Set<DeviceType> = emptySet(),
@@ -30,7 +30,7 @@ data class PermissionConfig(
     }
 }
 
-class PermissionsConfiguration private constructor(
+internal class PermissionsConfiguration private constructor(
     val permissionConfigs: List<PermissionConfig>
 ) {
     data class Builder(
