@@ -20,65 +20,50 @@ internal class PermissionsClient @Inject internal constructor(
 ) {
 
     fun getPermissions(config: PermissionsConfiguration): Flow<Permissions> {
-        val permissionsResponse = mutableListOf<PermissionDTO>()
+        val permissions = config.permissionConfigs
+            .filter { it.isRequired() }
+            .map { permissionConfig ->
+                val permissionDTO = when (val permissionType = permissionConfig.permissionType) {
+                    PermissionTypeDTO.ALARM -> PermissionDTO(
+                        permissionType = permissionType,
+                        granted = alarmPermissionChecker.hasPermission(appContext),
+                        isOptional = permissionConfig.isOptional
+                    )
 
-        config.permissionConfigs.forEach {
-            when (it.permissionType) {
-                PermissionTypeDTO.ALARM -> {
-                    if (it.isRequired()) {
-                        permissionsResponse.add(
-                            PermissionDTO(
-                                permissionType = it.permissionType,
-                                granted = alarmPermissionChecker.hasPermission(appContext),
-                                isOptional = it.isOptional
-                            )
-                        )
-                    }
+                    PermissionTypeDTO.AUTO_START -> PermissionDTO(
+                        permissionType = permissionType,
+                        granted = autoStartPermissionChecker.hasPermission(),
+                        intent = autoStartPermissionChecker.createIntent(),
+                        isOptional = permissionConfig.isOptional
+                    )
+
+                    PermissionTypeDTO.NOTIFICATIONS -> PermissionDTO(
+                        permissionType = permissionType,
+                        granted = notificationPermissionChecker.hasPermission(appContext),
+                        isOptional = permissionConfig.isOptional
+                    )
                 }
 
-                PermissionTypeDTO.AUTO_START -> {
-                    if (it.isRequired()){
-                        permissionsResponse.add(
-                            PermissionDTO(
-                                permissionType = PermissionTypeDTO.AUTO_START,
-                                granted = autoStartPermissionChecker.hasPermission(),
-                                intent = autoStartPermissionChecker.createIntent(),
-                                isOptional = it.isOptional
-                            )
-                        )
-                    }
-
-                }
-
-                PermissionTypeDTO.NOTIFICATIONS -> {
-                    if (it.isRequired()) {
-                        permissionsResponse.add(
-                            PermissionDTO(
-                                permissionType = PermissionTypeDTO.NOTIFICATIONS,
-                                granted = notificationPermissionChecker.hasPermission(appContext),
-                                isOptional = it.isOptional
-                            )
-                        )
-                    }
-                }
+                permissionDTO
             }
-        }
 
-        val allGranted = permissionsResponse.filterNot { it.isOptional }.all { it.granted }
+        val allGranted = permissions.filterNot { it.isOptional }.all { it.granted }
 
-        val permissionResponse = PermissionsDTO(
-            permissions = permissionsResponse,
+        val permissionsDTO = PermissionsDTO(
+            permissions = permissions,
             shouldAskPermission = shouldAskPermission(),
             allGranted = allGranted
         )
 
-        return flowOf(
-            permissionResponse.toPermissions()
-        )
+        return flowOf(permissionsDTO.toPermissions())
     }
 
     fun doNotAskMePermissions(value: Boolean) {
         preference.setPreference(DO_NOT_ASK_ME_PERMISSIONS, value)
+    }
+
+    private fun shouldAskPermission(): Boolean {
+        return preference.getPreference(DO_NOT_ASK_ME_PERMISSIONS, false) as Boolean
     }
 
     fun toggleAutoStartPermission() {
@@ -87,10 +72,6 @@ internal class PermissionsClient @Inject internal constructor(
 
     fun isAutoStartSupportedByDevice(devices: Set<DeviceType>, context: Context): Boolean {
         return autoStartPermissionChecker.isSupportedByDevice(devices, context)
-    }
-
-    private fun shouldAskPermission(): Boolean {
-        return preference.getPreference(DO_NOT_ASK_ME_PERMISSIONS, false) as Boolean
     }
 
     companion object {
