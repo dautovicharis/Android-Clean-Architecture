@@ -25,7 +25,6 @@ internal class PermissionsClient @Inject internal constructor(
         config.permissionConfigs.forEach {
             when (it.permissionType) {
                 PermissionTypeDTO.ALARM -> {
-
                     if (it.isRequired()) {
                         permissionsResponse.add(
                             PermissionDTO(
@@ -38,18 +37,11 @@ internal class PermissionsClient @Inject internal constructor(
                 }
 
                 PermissionTypeDTO.AUTO_START -> {
-
-                    val hasAutoStartPermission =
-                        preference.getPreference(
-                            AUTO_START_PERMISSION,
-                            false
-                        ) as Boolean
-
                     if (it.isRequired()){
                         permissionsResponse.add(
                             PermissionDTO(
                                 permissionType = PermissionTypeDTO.AUTO_START,
-                                granted = hasAutoStartPermission,
+                                granted = autoStartPermissionChecker.hasAutoStartPermission(),
                                 intent = autoStartPermissionChecker.createAutoStartIntent(),
                                 isOptional = it.isOptional
                             )
@@ -74,10 +66,7 @@ internal class PermissionsClient @Inject internal constructor(
 
         val allGranted = permissionsResponse.filterNot { it.isOptional }.all { it.granted }
         val shouldAskPermission =
-            preference.getPreference(
-                DO_NOT_ASK_ME_PERMISSIONS,
-                false
-            ) as Boolean
+            preference.getPreference(DO_NOT_ASK_ME_PERMISSIONS, false) as Boolean
 
         val permissionResponse = PermissionsDTO(
             permissions = permissionsResponse,
@@ -95,8 +84,7 @@ internal class PermissionsClient @Inject internal constructor(
     }
 
     fun toggleAutoStartPermission() {
-        val currentValue = preference.getPreference(AUTO_START_PERMISSION, false) as Boolean
-        preference.setPreference(AUTO_START_PERMISSION, !currentValue)
+        autoStartPermissionChecker.toggleAutoStartPermission()
     }
 
     fun isAutoStartSupportedByDevice(devices: Set<DeviceType>, context: Context): Boolean {
@@ -104,7 +92,6 @@ internal class PermissionsClient @Inject internal constructor(
     }
 
     companion object {
-        private const val AUTO_START_PERMISSION = "auto_start_permission"
         private const val DO_NOT_ASK_ME_PERMISSIONS = "do_not_ask_me_permissions"
     }
 }

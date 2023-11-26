@@ -5,15 +5,25 @@ import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Build
+import com.hd.data.source.local.SharedPreferenceClient
 import java.util.Locale
 import javax.inject.Inject
 
-internal class DefaultAutoStartPermissionChecker @Inject internal constructor() {
+internal class DefaultAutoStartPermissionChecker @Inject internal constructor(
+    private val preference: SharedPreferenceClient
+) {
     fun isAutoStartPermissionGranted(context: Context): Boolean {
         val intent = createAutoStartIntent()
         val activities =
             context.packageManager.queryIntentActivities(intent, PackageManager.MATCH_DEFAULT_ONLY)
         return activities.isNotEmpty()
+    }
+
+    fun hasAutoStartPermission() = preference.getPreference(AUTO_START_PERMISSION, false) as Boolean
+
+    fun toggleAutoStartPermission() {
+        val currentValue = preference.getPreference(AUTO_START_PERMISSION, false) as Boolean
+        preference.setPreference(AUTO_START_PERMISSION, !currentValue)
     }
 
     fun isAutoStartSupportedByDevice(devices: Set<DeviceType>, context: Context): Boolean {
@@ -68,5 +78,9 @@ internal class DefaultAutoStartPermissionChecker @Inject internal constructor() 
         return Intent().apply {
             component = componentName
         }
+    }
+
+    companion object {
+        private const val AUTO_START_PERMISSION = "auto_start_permission"
     }
 }
