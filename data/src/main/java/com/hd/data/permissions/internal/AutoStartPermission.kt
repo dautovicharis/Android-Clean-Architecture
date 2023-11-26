@@ -9,35 +9,28 @@ import com.hd.data.source.local.SharedPreferenceClient
 import java.util.Locale
 import javax.inject.Inject
 
-internal class DefaultAutoStartPermissionChecker @Inject internal constructor(
+internal class AutoStartPermission @Inject internal constructor(
     private val preference: SharedPreferenceClient
 ) {
-    fun isAutoStartPermissionGranted(context: Context): Boolean {
-        val intent = createAutoStartIntent()
-        val activities =
-            context.packageManager.queryIntentActivities(intent, PackageManager.MATCH_DEFAULT_ONLY)
-        return activities.isNotEmpty()
-    }
+    fun hasPermission() = preference.getPreference(AUTO_START_PERMISSION, false) as Boolean
 
-    fun hasAutoStartPermission() = preference.getPreference(AUTO_START_PERMISSION, false) as Boolean
-
-    fun toggleAutoStartPermission() {
+    fun togglePermission() {
         val currentValue = preference.getPreference(AUTO_START_PERMISSION, false) as Boolean
         preference.setPreference(AUTO_START_PERMISSION, !currentValue)
     }
 
-    fun isAutoStartSupportedByDevice(devices: Set<DeviceType>, context: Context): Boolean {
+    fun isSupportedByDevice(devices: Set<DeviceType>, context: Context): Boolean {
         // If no supported devices are specified, then it is supported by all devices
         if (devices.isEmpty()) return true
 
-        val intent = createAutoStartIntent()
+        val intent = createIntent()
         val activities = context.packageManager
             .queryIntentActivities(intent, PackageManager.MATCH_DEFAULT_ONLY)
 
         return activities.isNotEmpty()
     }
 
-    fun createAutoStartIntent(): Intent {
+    fun createIntent(): Intent {
         val manufacturer = Build.MANUFACTURER.lowercase(Locale.getDefault())
         val deviceType = DeviceType.entries.find { it.name.lowercase() == manufacturer }
 

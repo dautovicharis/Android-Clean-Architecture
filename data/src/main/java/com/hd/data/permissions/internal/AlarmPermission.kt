@@ -5,8 +5,8 @@ import android.content.Context
 import android.os.Build
 import javax.inject.Inject
 
-internal class DefaultAlarmPermissionChecker @Inject internal constructor() {
-    fun isPermissionGranted(appContext: Context): Boolean {
+internal class AlarmPermission @Inject internal constructor() {
+    fun hasPermission(appContext: Context): Boolean {
         return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
             val alarmManager: AlarmManager =
                 appContext.getSystemService(Context.ALARM_SERVICE) as AlarmManager

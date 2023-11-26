@@ -14,9 +14,9 @@ import javax.inject.Inject
 internal class PermissionsClient @Inject internal constructor(
     private val preference: SharedPreferenceClient,
     private val appContext: Context,
-    private val autoStartPermissionChecker: DefaultAutoStartPermissionChecker,
-    private val alarmPermissionChecker: DefaultAlarmPermissionChecker,
-    private val notificationPermissionChecker: DefaultNotificationPermissionChecker
+    private val autoStartPermissionChecker: AutoStartPermission,
+    private val alarmPermissionChecker: AlarmPermission,
+    private val notificationPermissionChecker: NotificationPermission
 ) {
 
     fun getPermissions(config: PermissionsConfiguration): Flow<Permissions> {
@@ -29,7 +29,7 @@ internal class PermissionsClient @Inject internal constructor(
                         permissionsResponse.add(
                             PermissionDTO(
                                 permissionType = it.permissionType,
-                                granted = alarmPermissionChecker.isPermissionGranted(appContext),
+                                granted = alarmPermissionChecker.hasPermission(appContext),
                                 isOptional = it.isOptional
                             )
                         )
@@ -41,8 +41,8 @@ internal class PermissionsClient @Inject internal constructor(
                         permissionsResponse.add(
                             PermissionDTO(
                                 permissionType = PermissionTypeDTO.AUTO_START,
-                                granted = autoStartPermissionChecker.hasAutoStartPermission(),
-                                intent = autoStartPermissionChecker.createAutoStartIntent(),
+                                granted = autoStartPermissionChecker.hasPermission(),
+                                intent = autoStartPermissionChecker.createIntent(),
                                 isOptional = it.isOptional
                             )
                         )
@@ -55,7 +55,7 @@ internal class PermissionsClient @Inject internal constructor(
                         permissionsResponse.add(
                             PermissionDTO(
                                 permissionType = PermissionTypeDTO.NOTIFICATIONS,
-                                granted = notificationPermissionChecker.isPermissionGranted(appContext),
+                                granted = notificationPermissionChecker.hasPermission(appContext),
                                 isOptional = it.isOptional
                             )
                         )
@@ -65,12 +65,10 @@ internal class PermissionsClient @Inject internal constructor(
         }
 
         val allGranted = permissionsResponse.filterNot { it.isOptional }.all { it.granted }
-        val shouldAskPermission =
-            preference.getPreference(DO_NOT_ASK_ME_PERMISSIONS, false) as Boolean
 
         val permissionResponse = PermissionsDTO(
             permissions = permissionsResponse,
-            shouldAskPermission = shouldAskPermission,
+            shouldAskPermission = shouldAskPermission(),
             allGranted = allGranted
         )
 
@@ -84,11 +82,15 @@ internal class PermissionsClient @Inject internal constructor(
     }
 
     fun toggleAutoStartPermission() {
-        autoStartPermissionChecker.toggleAutoStartPermission()
+        autoStartPermissionChecker.togglePermission()
     }
 
     fun isAutoStartSupportedByDevice(devices: Set<DeviceType>, context: Context): Boolean {
-        return autoStartPermissionChecker.isAutoStartSupportedByDevice(devices, context)
+        return autoStartPermissionChecker.isSupportedByDevice(devices, context)
+    }
+
+    private fun shouldAskPermission(): Boolean {
+        return preference.getPreference(DO_NOT_ASK_ME_PERMISSIONS, false) as Boolean
     }
 
     companion object {

@@ -7,8 +7,8 @@ import androidx.core.content.ContextCompat
 import javax.inject.Inject
 
 
-internal class DefaultNotificationPermissionChecker @Inject internal constructor() {
-    fun isPermissionGranted(appContext: Context): Boolean {
+internal class NotificationPermission @Inject internal constructor() {
+    fun hasPermission(appContext: Context): Boolean {
         return (ContextCompat.checkSelfPermission(
             appContext,
             Manifest.permission.POST_NOTIFICATIONS
