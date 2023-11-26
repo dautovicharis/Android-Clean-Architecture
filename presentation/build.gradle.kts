@@ -1,21 +1,18 @@
 plugins {
-    id("com.android.application")
+    id("com.android.library")
     id("org.jetbrains.kotlin.android")
     id("kotlin-kapt")
 }
 
 android {
-    namespace = "com.hd.mvi_clean_arch"
+    namespace = "com.hd.presentation"
     compileSdk = ProjectConfig.Android.compileSdk
 
     defaultConfig {
-        applicationId = "com.hd.mvi_clean_arch"
         minSdk = ProjectConfig.Android.minSdk
-        targetSdk = ProjectConfig.Android.targetSdk
-        versionCode = 1
-        versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles("consumer-rules.pro")
     }
 
     buildTypes {
@@ -34,30 +31,30 @@ android {
     kotlinOptions {
         jvmTarget = "17"
     }
-
-    buildFeatures {
-        viewBinding = true
-    }
 }
 
 dependencies {
-    // Core
-    implementation(Dependencies.Core.androidXCore)
-    implementation(Dependencies.Core.appCompat)
-    implementation(Dependencies.Core.material)
-    implementation(Dependencies.Core.constraintLayout)
 
-    // DI
-    implementation(Dependencies.DI.dagger)
-    kapt(Dependencies.DI.daggerKapt)
+    // Core
+    implementation(Dependencies.Core.javaxInject)
 
     // Lifecycle
     implementation(Dependencies.Lifecycle.lifeCycleViewModel)
     implementation(Dependencies.Lifecycle.lifeCycleRuntime)
     implementation(Dependencies.Lifecycle.lifeCycleExtension)
 
+    // Coroutines
+    implementation(Dependencies.Coroutines.coroutinesCore)
+    implementation(Dependencies.Coroutines.coroutinesAndroid)
+
+    // Testing
+    testImplementation(Dependencies.Testing.junit)
+    testImplementation(Dependencies.Testing.googleTruth)
+    testImplementation(Dependencies.Testing.mockk)
+    testImplementation(Dependencies.Testing.coroutinesTest)
+    testImplementation(Dependencies.Testing.androidxArchCoreTest)
+
     // Modules
-    implementation(project(Dependencies.Modules.data))
     implementation(project(Dependencies.Modules.domain))
-    implementation(project(Dependencies.Modules.presentation))
+    testImplementation(project(Dependencies.Modules.data))
 }
