@@ -52,7 +52,6 @@ class PermissionsUseCaseImpl @Inject internal constructor(
             )
         ).build()
 
-
         return permissionsClient.getPermissions(config)
     }
 

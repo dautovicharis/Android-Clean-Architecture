@@ -51,7 +51,7 @@ internal class PermissionsClient @Inject internal constructor(
 
         val permissionsDTO = PermissionsDTO(
             permissions = permissions,
-            shouldAskPermission = shouldAskPermission(),
+            shouldAskPermission = shouldAskPermissions(),
             allGranted = allGranted
         )
 
@@ -59,11 +59,11 @@ internal class PermissionsClient @Inject internal constructor(
     }
 
     fun doNotAskMePermissions(value: Boolean) {
-        preference.setPreference(DO_NOT_ASK_ME_PERMISSIONS, value)
+        preference.setPreference(DO_NOT_ASK_PERMISSIONS, value)
     }
 
-    private fun shouldAskPermission(): Boolean {
-        return preference.getPreference(DO_NOT_ASK_ME_PERMISSIONS, false) as Boolean
+    private fun shouldAskPermissions(): Boolean {
+        return !(preference.getPreference(DO_NOT_ASK_PERMISSIONS, false) as Boolean)
     }
 
     fun toggleAutoStartPermission() {
@@ -75,6 +75,6 @@ internal class PermissionsClient @Inject internal constructor(
     }
 
     companion object {
-        private const val DO_NOT_ASK_ME_PERMISSIONS = "do_not_ask_me_permissions"
+        private const val DO_NOT_ASK_PERMISSIONS = "DO_NOT_ASK_PERMISSIONS"
     }
 }
