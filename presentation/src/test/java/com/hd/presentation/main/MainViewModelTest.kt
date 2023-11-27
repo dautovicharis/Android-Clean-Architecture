@@ -80,7 +80,7 @@ class MainViewModelTest {
             ).toPermissions()
 
             coEvery { permissionUseCase.checkPermissions() } returns flowOf(permissionsMock)
-            coEvery { viewModel.permissionsActivityDismissed } returns true
+            coEvery { viewModel.permissionsDismissed } returns true
 
             // Act
             viewModel.checkAllPermissions()
@@ -107,7 +107,7 @@ class MainViewModelTest {
             ).toPermissions()
 
             coEvery { permissionUseCase.checkPermissions() } returns flowOf(permissionsMock)
-            coEvery { viewModel.permissionsActivityDismissed } returns false
+            coEvery { viewModel.permissionsDismissed } returns false
 
             // Act
             viewModel.checkAllPermissions()
@@ -144,7 +144,7 @@ class MainViewModelTest {
             ).toPermissions()
 
             coEvery { permissionUseCase.checkPermissions() } returns flowOf(permissionsMock)
-            coEvery { viewModel.permissionsActivityDismissed } returns true
+            coEvery { viewModel.permissionsDismissed } returns true
 
             // Act
             viewModel.checkAllPermissions()
@@ -160,10 +160,10 @@ class MainViewModelTest {
     @Test
     fun `dismiss should call permissionsActivityDismissed`() = runTest {
         // Act
-        viewModel.dismiss()
+        viewModel.dismissPermissions()
 
         // Assert
-        val result = viewModel.permissionsActivityDismissed
+        val result = viewModel.permissionsDismissed
         Truth.assertThat(result).isTrue()
     }
 
