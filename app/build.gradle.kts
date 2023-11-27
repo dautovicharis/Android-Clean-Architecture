@@ -5,11 +5,11 @@ plugins {
 }
 
 android {
-    namespace = "com.hd.mvi_clean_arch"
+    namespace = "com.hd.clean_arch"
     compileSdk = ProjectConfig.Android.compileSdk
 
     defaultConfig {
-        applicationId = "com.hd.mvi_clean_arch"
+        applicationId = "com.hd.clean_arch"
         minSdk = ProjectConfig.Android.minSdk
         targetSdk = ProjectConfig.Android.targetSdk
         versionCode = 1

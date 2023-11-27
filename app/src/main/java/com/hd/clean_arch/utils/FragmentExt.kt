@@ -1,4 +1,4 @@
-package com.hd.mvi_clean_arch.utils
+package com.hd.clean_arch.utils
 
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModel

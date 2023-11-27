@@ -1,4 +1,4 @@
-# MVI-Clean-Architecture
+# Android-Clean-Architecture
 
 Modules:
 - app: Android application 

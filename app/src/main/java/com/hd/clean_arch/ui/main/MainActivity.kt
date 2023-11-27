@@ -1,4 +1,4 @@
-package com.hd.mvi_clean_arch.ui.main
+package com.hd.clean_arch.ui.main
 
 import android.app.Activity
 import android.content.Intent
@@ -8,10 +8,10 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
-import com.hd.mvi_clean_arch.base.ViewBindingActivity
-import com.hd.mvi_clean_arch.databinding.ActivityMainBinding
-import com.hd.mvi_clean_arch.ui.permissions.PermissionsActivity
-import com.hd.mvi_clean_arch.utils.viewModelOf
+import com.hd.clean_arch.base.ViewBindingActivity
+import com.hd.clean_arch.databinding.ActivityMainBinding
+import com.hd.clean_arch.ui.permissions.PermissionsActivity
+import com.hd.clean_arch.utils.viewModelOf
 import com.hd.presentation.main.MainNavigation
 import com.hd.presentation.main.MainViewModel
 import kotlinx.coroutines.launch

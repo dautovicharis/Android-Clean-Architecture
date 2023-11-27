@@ -13,7 +13,7 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "MVI-Clean-Architecture"
+rootProject.name = "Android-Clean-Architecture"
 include(":presentation")
 include(":app")
 include(":data")

@@ -1,4 +1,4 @@
-package com.hd.mvi_clean_arch.di.module
+package com.hd.clean_arch.di.module
 
 import androidx.lifecycle.ViewModel
 import com.hd.presentation.main.MainViewModel

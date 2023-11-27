@@ -1,4 +1,4 @@
-package com.hd.mvi_clean_arch.ui.permissions
+package com.hd.clean_arch.ui.permissions
 
 import android.Manifest
 import android.app.Activity
@@ -13,9 +13,9 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.hd.mvi_clean_arch.base.ViewBindingActivity
-import com.hd.mvi_clean_arch.databinding.ActivityPermissionsBinding
-import com.hd.mvi_clean_arch.utils.viewModelOf
+import com.hd.clean_arch.base.ViewBindingActivity
+import com.hd.clean_arch.databinding.ActivityPermissionsBinding
+import com.hd.clean_arch.utils.viewModelOf
 import com.hd.presentation.permissions.PermissionsNavigation
 import com.hd.presentation.permissions.PermissionsUiState
 import com.hd.presentation.permissions.PermissionsViewModel
