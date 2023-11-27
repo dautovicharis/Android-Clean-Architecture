@@ -127,17 +127,8 @@ class PermissionsActivity : ViewBindingActivity<ActivityPermissionsBinding>(),
         viewModelPermissions.handlePermissionToggle(permission)
     }
 
-    private fun openAutoStartActivity(event: NavigationEvent.OpenAutoStartActivity) {
-        try {
-            val intent = event.intent
-            if (packageManager.queryIntentActivities(intent, PackageManager.MATCH_DEFAULT_ONLY)
-                    .isNotEmpty()
-            ) {
-                startActivity(intent)
-            }
-        } catch (e: Exception) {
-
-        }
+    private fun openAutoStartActivity(event: PermissionsNavigation.OpenAutoStartActivity) {
+        startActivity(event.intent)
     }
 
     private fun openAlarmActivity() {
