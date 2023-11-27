@@ -1,6 +1,6 @@
-package com.hd.presentation.permissions.model.uistate
+package com.hd.presentation.permissions
 
-import com.hd.presentation.permissions.model.PermissionsUI
+import com.hd.presentation.permissions.mapper.PermissionsUI
 
 sealed interface PermissionsUiState {
     data class Success(val permissionsUi: PermissionsUI) : PermissionsUiState

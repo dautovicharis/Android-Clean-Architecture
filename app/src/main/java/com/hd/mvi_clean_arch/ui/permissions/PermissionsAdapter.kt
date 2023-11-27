@@ -4,7 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.hd.mvi_clean_arch.databinding.ItemPremissionBinding
-import com.hd.presentation.permissions.model.PermissionUI
+import com.hd.presentation.permissions.mapper.PermissionUI
 
 class PermissionsAdapter(private val listener: PermissionToggleListener) :
     RecyclerView.Adapter<PermissionsAdapter.PermissionViewHolder>() {

@@ -1,11 +1,8 @@
-package com.hd.present.permissions.mapper
+package com.hd.presentation.permissions.mapper
 
 import com.hd.domain.permissions.model.Permission
 import com.hd.domain.permissions.model.PermissionType
 import com.hd.domain.permissions.model.Permissions
-import com.hd.presentation.permissions.model.PermissionTypeUI
-import com.hd.presentation.permissions.model.PermissionUI
-import com.hd.presentation.permissions.model.PermissionsUI
 
 fun PermissionType.toUI(): PermissionTypeUI {
     return when (this) {

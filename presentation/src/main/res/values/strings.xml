@@ -1,4 +1,5 @@
 <resources>
+    <!-- Permissions screen -->
     <string name="permission_auto_start_title">Auto Start</string>
     <string name="permission_auto_start_desc">Enable Auto Start permission to ensure the proper functioning of scheduled notifications. On certain devices like Xiaomi, Oppo, Honor, the auto-start permission allows the application to automatically start after you restart the device. Without this permission, scheduled notifications may not work after restarting the phone.</string>
 
@@ -8,5 +9,10 @@
     <string name="permission_notification_title">Notifications</string>
     <string name="permission_notification_desc">This permission is needed to receive daily notifications.</string>
 
-    <string name="permission_dont_ask_me_again">Do not ask me again</string>
+    <string name="permission_do_not_ask">Don\'t ask me again</string>
+
+    <!--Main screen -->
+    <string name="permissions_missing">Some permissions are missing.</string>
+    <string name="permissions_granted">Permissions granted.</string>
+
 </resources>
