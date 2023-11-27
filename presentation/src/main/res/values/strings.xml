@@ -9,4 +9,9 @@
     <string name="permission_notification_desc">This permission is needed to receive daily notifications.</string>
 
     <string name="permission_dont_ask_me_again">Do not ask me again</string>
+
+    <!--Main screen -->
+    <string name="permissions_missing">Some permissions are missing.</string>
+    <string name="permissions_granted">Permissions granted.</string>
+
 </resources>
