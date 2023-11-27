@@ -1,4 +1,4 @@
-package com.hd.presentation.permissions.model
+package com.hd.presentation.permissions.mapper
 
 import android.content.Intent
 import com.hd.presentation.R
