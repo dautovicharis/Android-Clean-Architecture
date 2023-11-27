@@ -59,6 +59,10 @@ class PermissionsActivity : ViewBindingActivity<ActivityPermissionsBinding>(),
     override fun setupClickListeners() {
         super.setupClickListeners()
         binding.dontAskMeAgain.setOnCheckedChangeListener { _, isChecked ->
+        binding.btnClose.setOnClickListener {
+            setResult(Activity.RESULT_CANCELED)
+            finish()
+        }
             viewModelPermissions.doNotAskMeAgain(isChecked)
         }
 
