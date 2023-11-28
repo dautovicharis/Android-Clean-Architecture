@@ -33,7 +33,6 @@ class PermissionsActivity : ViewBindingActivity<ActivityPermissionsBinding>(),
 
     private val requestPermissionLauncher =
         registerForActivityResult(ActivityResultContracts.RequestPermission()) { isGranted: Boolean ->
-            viewModelPermissions.checkAllPermissions()
             if (!isGranted) {
                 openAppSettings()
             }
