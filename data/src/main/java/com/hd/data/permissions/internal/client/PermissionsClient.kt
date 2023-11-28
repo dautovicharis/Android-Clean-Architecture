@@ -1,11 +1,15 @@
-package com.hd.data.permissions.internal
+package com.hd.data.permissions.internal.client
 
 import android.content.Context
+import com.hd.data.permissions.internal.AlarmPermission
+import com.hd.data.permissions.internal.AutoStartPermission
+import com.hd.data.permissions.internal.DeviceType
+import com.hd.data.permissions.internal.NotificationPermission
+import com.hd.data.permissions.internal.PermissionsConfiguration
 import com.hd.data.permissions.mapper.toPermissions
 import com.hd.data.permissions.model.PermissionDTO
 import com.hd.data.permissions.model.PermissionTypeDTO
 import com.hd.data.permissions.model.PermissionsDTO
-import com.hd.data.source.local.SharedPreferenceClient
 import com.hd.domain.permissions.model.Permissions
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flowOf

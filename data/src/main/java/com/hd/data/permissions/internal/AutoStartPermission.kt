@@ -5,7 +5,7 @@ import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Build
-import com.hd.data.source.local.SharedPreferenceClient
+import com.hd.data.permissions.internal.client.SharedPreferenceClient
 import java.util.Locale
 import javax.inject.Inject
 
