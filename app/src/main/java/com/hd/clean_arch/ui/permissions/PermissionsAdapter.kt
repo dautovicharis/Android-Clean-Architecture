@@ -1,9 +1,9 @@
-package com.hd.mvi_clean_arch.ui.permissions
+package com.hd.clean_arch.ui.permissions
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.hd.mvi_clean_arch.databinding.ItemPremissionBinding
+import com.hd.clean_arch.databinding.ItemPremissionBinding
 import com.hd.presentation.permissions.mapper.PermissionUI
 
 class PermissionsAdapter(private val listener: PermissionToggleListener) :

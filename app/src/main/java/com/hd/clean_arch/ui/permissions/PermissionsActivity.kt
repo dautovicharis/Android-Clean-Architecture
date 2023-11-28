@@ -1,7 +1,8 @@
-package com.hd.mvi_clean_arch.ui.permissions
+package com.hd.clean_arch.ui.permissions
 
 import android.Manifest
 import android.app.Activity
+import android.content.ComponentName
 import android.content.Intent
 import android.net.Uri
 import android.provider.Settings
@@ -13,9 +14,9 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.hd.mvi_clean_arch.base.ViewBindingActivity
-import com.hd.mvi_clean_arch.databinding.ActivityPermissionsBinding
-import com.hd.mvi_clean_arch.utils.viewModelOf
+import com.hd.clean_arch.base.ViewBindingActivity
+import com.hd.clean_arch.databinding.ActivityPermissionsBinding
+import com.hd.clean_arch.utils.viewModelOf
 import com.hd.presentation.permissions.PermissionsNavigation
 import com.hd.presentation.permissions.PermissionsUiState
 import com.hd.presentation.permissions.PermissionsViewModel
@@ -33,7 +34,6 @@ class PermissionsActivity : ViewBindingActivity<ActivityPermissionsBinding>(),
 
     private val requestPermissionLauncher =
         registerForActivityResult(ActivityResultContracts.RequestPermission()) { isGranted: Boolean ->
-            viewModelPermissions.checkAllPermissions()
             if (!isGranted) {
                 openAppSettings()
             }
@@ -128,7 +128,10 @@ class PermissionsActivity : ViewBindingActivity<ActivityPermissionsBinding>(),
     }
 
     private fun openAutoStartActivity(event: PermissionsNavigation.OpenAutoStartActivity) {
-        startActivity(event.intent)
+        val intent = Intent().apply {
+            component = ComponentName(event.intent.packageName, event.intent.className)
+        }
+        startActivity(intent)
     }
 
     private fun openAlarmActivity() {

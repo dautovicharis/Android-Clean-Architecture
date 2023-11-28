@@ -1,7 +1,7 @@
-package com.hd.mvi_clean_arch.di.module
+package com.hd.clean_arch.di.module
 
 import androidx.lifecycle.ViewModelProvider
-import com.hd.mvi_clean_arch.utils.ViewModelProviderFactory
+import com.hd.clean_arch.utils.ViewModelProviderFactory
 import dagger.Binds
 import dagger.Module
 import javax.inject.Singleton

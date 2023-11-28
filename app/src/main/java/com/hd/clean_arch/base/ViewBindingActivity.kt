@@ -1,4 +1,4 @@
-package com.hd.mvi_clean_arch.base
+package com.hd.clean_arch.base
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -8,7 +8,7 @@ import androidx.viewbinding.ViewBinding
 import javax.inject.Inject
 
 abstract class ViewBindingActivity<VB : ViewBinding> : AppCompatActivity() {
-    val appComponent get() = (application as com.hd.mvi_clean_arch.App).appComponent
+    val appComponent get() = (application as com.hd.clean_arch.App).appComponent
 
     @Inject
     protected lateinit var mViewModelProvider: ViewModelProvider.Factory

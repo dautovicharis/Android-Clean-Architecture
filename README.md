@@ -1,4 +1,4 @@
-# MVI-Clean-Architecture
+# Android-Clean-Architecture
 
 Modules:
 - app: Android application 
@@ -9,7 +9,7 @@ Modules:
     Type: Android-Library
 - domain: Domain layer
     Access: Nothing
-    Type: Android-Library
+    Type: Kotlin-Library
 - data: Data layer
     Access: domain
     Type: Android-Library

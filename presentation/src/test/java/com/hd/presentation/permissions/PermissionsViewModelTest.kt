@@ -9,6 +9,7 @@ import com.hd.data.permissions.model.PermissionTypeDTO
 import com.hd.data.permissions.model.PermissionsDTO
 import com.hd.domain.permissions.usecase.PermissionsUseCase
 import com.hd.presentation.observeOnce
+import com.hd.presentation.permissions.mapper.PermissionComponentUI
 import com.hd.presentation.permissions.mapper.PermissionTypeUI
 import com.hd.presentation.permissions.mapper.PermissionUI
 import com.hd.presentation.permissions.mapper.toUI
@@ -97,7 +98,10 @@ class PermissionsViewModelTest {
     @Test
     fun `handlePermissionToggle with AUTO_START should call OpenAutoStartActivity`() = runTest {
         // Arrange
-        val intent = Intent()
+        val intent = PermissionComponentUI(
+            packageName = "com.letv.android.letvsafe",
+            className = "com.letv.android.letvsafe.AutobootManageActivity"
+        )
         val permission = PermissionUI(
             permissionType = PermissionTypeUI.AUTO_START,
             intent = intent,

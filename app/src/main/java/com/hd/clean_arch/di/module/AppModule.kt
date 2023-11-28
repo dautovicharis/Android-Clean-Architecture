@@ -1,4 +1,4 @@
-package com.hd.mvi_clean_arch.di.module
+package com.hd.clean_arch.di.module
 
 import android.content.Context
 import dagger.Module

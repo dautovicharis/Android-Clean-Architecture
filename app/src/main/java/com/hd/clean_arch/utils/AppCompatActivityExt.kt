@@ -1,4 +1,4 @@
-package com.hd.mvi_clean_arch.utils
+package com.hd.clean_arch.utils
 
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModel

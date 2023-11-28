@@ -11,9 +11,14 @@ data class PermissionsDTO (
 
 data class PermissionDTO(
     val permissionType: PermissionTypeDTO,
-    val intent: Intent? = null,
+    val intent: PermissionComponentDTO? = null,
     val granted: Boolean,
     val isOptional: Boolean
+)
+
+data class PermissionComponentDTO(
+    val packageName: String,
+    val className: String
 )
 
 enum class PermissionTypeDTO {

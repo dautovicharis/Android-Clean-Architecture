@@ -11,8 +11,13 @@ data class PermissionsUI(
 
 data class PermissionUI(
     val permissionType: PermissionTypeUI,
-    val intent: Intent?,
+    val intent: PermissionComponentUI?,
     val granted: Boolean
+)
+
+data class PermissionComponentUI(
+    val packageName: String,
+    val className: String
 )
 
 enum class PermissionTypeUI {
