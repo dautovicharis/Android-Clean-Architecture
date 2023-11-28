@@ -1,15 +1,10 @@
 # Android-Clean-Architecture
 
-Modules:
-- app: Android application 
-    Access: Everything
-    Type: Android-Application
-- presentation: Presentation layer
-    Access: domain
-    Type: Android-Library
-- domain: Domain layer
-    Access: Nothing
-    Type: Kotlin-Library
-- data: Data layer
-    Access: domain
-    Type: Android-Library
+-  App: Android-Application
+    - Access: everything
+- Presentation: Android-Library
+    - Access: domain
+- Domain: Kotlin-Library
+    - Access: nothing
+- Data: Android-Library
+    - Access: domain
