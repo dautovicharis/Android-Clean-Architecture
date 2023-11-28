@@ -37,7 +37,7 @@ internal class PermissionsClient @Inject internal constructor(
                     PermissionTypeDTO.AUTO_START -> PermissionDTO(
                         permissionType = permissionType,
                         granted = autoStartPermissionChecker.hasPermission(),
-                        intent = autoStartPermissionChecker.createIntent(),
+                        intent = autoStartPermissionChecker.getComponent(),
                         isOptional = permissionConfig.isOptional
                     )
 

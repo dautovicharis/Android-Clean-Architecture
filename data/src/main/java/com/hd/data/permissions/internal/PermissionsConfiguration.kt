@@ -9,8 +9,7 @@ internal enum class DeviceType {
     VIVO,
     LETV,
     HONOR,
-    ONEPLUS,
-    ALL
+    ONEPLUS
 }
 
 internal data class PermissionConfig(

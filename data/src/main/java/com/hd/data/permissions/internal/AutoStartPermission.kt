@@ -6,6 +6,7 @@ import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Build
 import com.hd.data.permissions.internal.client.SharedPreferenceClient
+import com.hd.data.permissions.model.PermissionComponentDTO
 import java.util.Locale
 import javax.inject.Inject
 
@@ -23,53 +24,54 @@ internal class AutoStartPermission @Inject internal constructor(
         // If no supported devices are specified, then it is supported by all devices
         if (devices.isEmpty()) return true
 
-        val intent = createIntent()
+        val componentDTO = getComponent()
+        val intent = componentDTO?.let {
+              Intent().apply {
+                component = ComponentName(it.packageName, it.className)
+            }
+        } ?: return false
+
         val activities = context.packageManager
             .queryIntentActivities(intent, PackageManager.MATCH_DEFAULT_ONLY)
 
         return activities.isNotEmpty()
     }
 
-    fun createIntent(): Intent {
+    fun getComponent(): PermissionComponentDTO? {
         val manufacturer = Build.MANUFACTURER.lowercase(Locale.getDefault())
-        val deviceType = DeviceType.entries.find { it.name.lowercase() == manufacturer }
 
-        val componentName = when (deviceType) {
-            DeviceType.XIAOMI -> ComponentName(
+        return when (DeviceType.entries.find { it.name.lowercase() == manufacturer }) {
+            DeviceType.XIAOMI -> PermissionComponentDTO(
                 "com.miui.securitycenter",
                 "com.miui.permcenter.autostart.AutoStartManagementActivity"
             )
 
-            DeviceType.OPPO -> ComponentName(
+            DeviceType.OPPO -> PermissionComponentDTO(
                 "com.coloros.safecenter",
                 "com.coloros.safecenter.permission.startup.StartupAppListActivity"
             )
 
-            DeviceType.VIVO -> ComponentName(
+            DeviceType.VIVO -> PermissionComponentDTO(
                 "com.vivo.permissionmanager",
                 "com.vivo.permissionmanager.activity.BgStartUpManagerActivity"
             )
 
-            DeviceType.LETV -> ComponentName(
+            DeviceType.LETV -> PermissionComponentDTO(
                 "com.letv.android.letvsafe",
                 "com.letv.android.letvsafe.AutobootManageActivity"
             )
 
-            DeviceType.HONOR -> ComponentName(
+            DeviceType.HONOR -> PermissionComponentDTO(
                 "com.huawei.systemmanager",
                 "com.huawei.systemmanager.optimize.process.ProtectActivity"
             )
 
-            DeviceType.ONEPLUS -> ComponentName(
+            DeviceType.ONEPLUS -> PermissionComponentDTO(
                 "com.oneplus.security",
                 "com.oneplus.security.chainlaunch.view.ChainLaunchAppListActivity"
             )
 
             else -> null
-        }
-
-        return Intent().apply {
-            component = componentName
         }
     }
 

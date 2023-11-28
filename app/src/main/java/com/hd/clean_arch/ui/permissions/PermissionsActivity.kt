@@ -2,6 +2,7 @@ package com.hd.clean_arch.ui.permissions
 
 import android.Manifest
 import android.app.Activity
+import android.content.ComponentName
 import android.content.Intent
 import android.net.Uri
 import android.provider.Settings
@@ -127,7 +128,10 @@ class PermissionsActivity : ViewBindingActivity<ActivityPermissionsBinding>(),
     }
 
     private fun openAutoStartActivity(event: PermissionsNavigation.OpenAutoStartActivity) {
-        startActivity(event.intent)
+        val intent = Intent().apply {
+            component = ComponentName(event.intent.packageName, event.intent.className)
+        }
+        startActivity(intent)
     }
 
     private fun openAlarmActivity() {
