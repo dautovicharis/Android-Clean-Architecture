@@ -14,8 +14,10 @@ import com.hd.clean_arch.ui.permissions.PermissionsActivity
 import com.hd.clean_arch.utils.viewModelOf
 import com.hd.presentation.main.MainNavigation
 import com.hd.presentation.main.MainViewModel
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
+@AndroidEntryPoint
 class MainActivity : ViewBindingActivity<ActivityMainBinding>() {
 
     private val viewModelPermissions: MainViewModel by lazy { viewModelOf(mViewModelProvider) }
@@ -30,11 +32,6 @@ class MainActivity : ViewBindingActivity<ActivityMainBinding>() {
                 viewModelPermissions.dismissPermissions()
             }
         }
-
-    override fun inject() {
-        super.inject()
-        appComponent.inject(this)
-    }
 
     override fun onResume() {
         super.onResume()

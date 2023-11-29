@@ -21,8 +21,10 @@ import com.hd.presentation.permissions.PermissionsNavigation
 import com.hd.presentation.permissions.PermissionsUiState
 import com.hd.presentation.permissions.PermissionsViewModel
 import com.hd.presentation.permissions.mapper.PermissionUI
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
+@AndroidEntryPoint
 class PermissionsActivity : ViewBindingActivity<ActivityPermissionsBinding>(),
     PermissionsAdapter.PermissionToggleListener {
 
@@ -38,11 +40,6 @@ class PermissionsActivity : ViewBindingActivity<ActivityPermissionsBinding>(),
                 openAppSettings()
             }
         }
-
-    override fun inject() {
-        super.inject()
-        appComponent.inject(this)
-    }
 
     override fun setupUIElements() {
         super.setupUIElements()
