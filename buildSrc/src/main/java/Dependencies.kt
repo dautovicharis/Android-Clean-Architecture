@@ -24,8 +24,8 @@ object Dependencies {
     }
 
     object DI {
-        const val dagger = "com.google.dagger:dagger:${Versions.daggerVersion}"
-        const val daggerKapt = "com.google.dagger:dagger-compiler:${Versions.daggerVersion}"
+        const val hiltAndroid = "com.google.dagger:hilt-android:${Versions.hiltAndroidVersion}"
+        const val hiltCompiler = "com.google.dagger:hilt-compiler:${Versions.hiltCompilerVersion}"
     }
 
     object Coroutines {

@@ -48,8 +48,8 @@ dependencies {
     implementation(Dependencies.Core.constraintLayout)
 
     // DI
-    implementation(Dependencies.DI.dagger)
-    kapt(Dependencies.DI.daggerKapt)
+    implementation(Dependencies.DI.hiltAndroid)
+    kapt(Dependencies.DI.hiltCompiler)
 
     // Lifecycle
     implementation(Dependencies.Lifecycle.lifeCycleViewModel)

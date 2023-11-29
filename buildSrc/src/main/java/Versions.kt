@@ -3,8 +3,9 @@ object Versions {
     const val lifecycleVersion = "2.6.2"
     const val lifecycleExtensionsVersion = "2.2.0"
 
-    // Dagger
-    const val daggerVersion = "2.48"
+    // DI
+    const val hiltAndroidVersion = "2.48.1"
+    const val hiltCompilerVersion = "2.48.1"
 
     // Android Core
     const val coreKtxVersion = "1.12.0"
