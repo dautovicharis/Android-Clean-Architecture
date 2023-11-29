@@ -15,6 +15,7 @@ object Dependencies {
             "androidx.constraintlayout:constraintlayout:${Versions.constraintLayoutVersion}"
         const val preferences = "androidx.preference:preference-ktx:${Versions.preferenceVersion}"
         const val javaxInject = "javax.inject:javax.inject:${Versions.javaxInjectVersion}"
+        const val activityKtx = "androidx.activity:activity-ktx:${Versions.activityKtxVersion}"
     }
 
     object Lifecycle {

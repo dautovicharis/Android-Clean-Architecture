@@ -14,6 +14,7 @@ object Versions {
     const val constraintLayoutVersion = "2.1.4"
     const val preferenceVersion = "1.2.1"
     const val javaxInjectVersion = "1"
+    const val activityKtxVersion = "1.4.0"
 
     // Testing
     const val junitVersion = "4.13.2"

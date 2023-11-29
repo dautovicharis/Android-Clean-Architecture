@@ -47,6 +47,7 @@ dependencies {
     implementation(Dependencies.Core.appCompat)
     implementation(Dependencies.Core.material)
     implementation(Dependencies.Core.constraintLayout)
+    implementation(Dependencies.Core.activityKtx)
 
     // DI
     implementation(Dependencies.DI.hiltAndroid)
