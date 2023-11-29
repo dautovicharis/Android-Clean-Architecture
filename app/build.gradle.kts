@@ -2,6 +2,7 @@ plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
     id("kotlin-kapt")
+    id("com.google.dagger.hilt.android")
 }
 
 android {
@@ -46,10 +47,11 @@ dependencies {
     implementation(Dependencies.Core.appCompat)
     implementation(Dependencies.Core.material)
     implementation(Dependencies.Core.constraintLayout)
+    implementation(Dependencies.Core.activityKtx)
 
     // DI
-    implementation(Dependencies.DI.dagger)
-    kapt(Dependencies.DI.daggerKapt)
+    implementation(Dependencies.DI.hiltAndroid)
+    kapt(Dependencies.DI.hiltCompiler)
 
     // Lifecycle
     implementation(Dependencies.Lifecycle.lifeCycleViewModel)

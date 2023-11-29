@@ -3,8 +3,9 @@ object Versions {
     const val lifecycleVersion = "2.6.2"
     const val lifecycleExtensionsVersion = "2.2.0"
 
-    // Dagger
-    const val daggerVersion = "2.48"
+    // DI
+    const val hiltAndroidVersion = "2.48.1"
+    const val hiltCompilerVersion = "2.48.1"
 
     // Android Core
     const val coreKtxVersion = "1.12.0"
@@ -13,6 +14,7 @@ object Versions {
     const val constraintLayoutVersion = "2.1.4"
     const val preferenceVersion = "1.2.1"
     const val javaxInjectVersion = "1"
+    const val activityKtxVersion = "1.4.0"
 
     // Testing
     const val junitVersion = "4.13.2"
