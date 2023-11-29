@@ -8,7 +8,6 @@ import androidx.viewbinding.ViewBinding
 import javax.inject.Inject
 
 abstract class ViewBindingActivity<VB : ViewBinding> : AppCompatActivity() {
-    val appComponent get() = (application as com.hd.clean_arch.App).appComponent
 
     @Inject
     protected lateinit var mViewModelProvider: ViewModelProvider.Factory
@@ -20,7 +19,6 @@ abstract class ViewBindingActivity<VB : ViewBinding> : AppCompatActivity() {
         get() = requireNotNull(_binding) { "ViewBinding is not initialized" }
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        inject()
         initializeComponents()
         super.onCreate(savedInstanceState)
 
@@ -47,6 +45,5 @@ abstract class ViewBindingActivity<VB : ViewBinding> : AppCompatActivity() {
     open fun setupClickListeners() {}
     open fun observeViewModel() {}
     open fun collectFlows() {}
-    open fun inject() {}
 }
 
