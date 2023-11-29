@@ -3,14 +3,9 @@ package com.hd.clean_arch.base
 import android.os.Bundle
 import android.view.LayoutInflater
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.ViewModelProvider
 import androidx.viewbinding.ViewBinding
-import javax.inject.Inject
 
 abstract class ViewBindingActivity<VB : ViewBinding> : AppCompatActivity() {
-
-    @Inject
-    protected lateinit var mViewModelProvider: ViewModelProvider.Factory
 
     private var _binding: VB? = null
     abstract val bindingInflater: (LayoutInflater) -> VB
