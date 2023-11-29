@@ -2,12 +2,18 @@ package com.hd.clean_arch.di.module
 
 import com.hd.data.permissions.PermissionsUseCaseImpl
 import com.hd.domain.permissions.usecase.PermissionsUseCase
-import dagger.Binds
 import dagger.Module
+import dagger.Provides
+import dagger.hilt.InstallIn
+import dagger.hilt.android.components.ViewModelComponent
+import dagger.hilt.android.scopes.ViewModelScoped
 
 @Module
-interface UseCaseModule {
+@InstallIn(ViewModelComponent::class)
+object UseCaseModule {
 
-    @Binds
-    fun bindPermissionUseCase(permissionImpl: PermissionsUseCaseImpl): PermissionsUseCase
+    @Provides
+    @ViewModelScoped
+    fun providePermissionUseCase(permissionImpl: PermissionsUseCaseImpl): PermissionsUseCase =
+        permissionImpl
 }
