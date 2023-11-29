@@ -2,6 +2,7 @@ plugins {
     id("com.android.library")
     id("org.jetbrains.kotlin.android")
     id("kotlin-kapt")
+    id("com.google.dagger.hilt.android")
 }
 
 android {
@@ -46,6 +47,10 @@ dependencies {
     // Coroutines
     implementation(Dependencies.Coroutines.coroutinesCore)
     implementation(Dependencies.Coroutines.coroutinesAndroid)
+
+    // DI
+    implementation(Dependencies.DI.hiltAndroid)
+    kapt(Dependencies.DI.hiltCompiler)
 
     // Testing
     testImplementation(Dependencies.Testing.junit)

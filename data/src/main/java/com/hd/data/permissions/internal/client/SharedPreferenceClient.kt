@@ -3,7 +3,9 @@ package com.hd.data.permissions.internal.client
 import android.content.Context
 import androidx.preference.PreferenceManager
 import javax.inject.Inject
+import javax.inject.Singleton
 
+@Singleton
 internal class SharedPreferenceClient @Inject constructor(appContext: Context) {
 
     private val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(appContext)

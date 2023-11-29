@@ -3,12 +3,16 @@ package com.hd.clean_arch.di.module
 import android.content.Context
 import dagger.Module
 import dagger.Provides
+import dagger.hilt.InstallIn
+import dagger.hilt.android.qualifiers.ApplicationContext
+import dagger.hilt.components.SingletonComponent
 import javax.inject.Singleton
 
 @Module
-class AppModule(private val appContext: Context) {
+@InstallIn(SingletonComponent::class)
+class AppModule {
 
-    @Singleton
     @Provides
-    fun appContext() = appContext
+    @Singleton
+    fun appContext(@ApplicationContext context: Context): Context = context
 }

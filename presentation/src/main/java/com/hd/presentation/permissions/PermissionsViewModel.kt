@@ -7,11 +7,13 @@ import com.hd.presentation.permissions.mapper.PermissionTypeUI
 import com.hd.presentation.permissions.mapper.PermissionUI
 import com.hd.presentation.permissions.mapper.toUI
 import com.hd.presentation.utils.SingleLiveEvent
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
+@HiltViewModel
 class PermissionsViewModel @Inject constructor(
     private val permissionsUseCase: PermissionsUseCase
 ) : ViewModel() {

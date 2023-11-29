@@ -5,20 +5,22 @@ import android.content.Intent
 import android.view.LayoutInflater
 import androidx.activity.result.ActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.activity.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import com.hd.clean_arch.base.ViewBindingActivity
 import com.hd.clean_arch.databinding.ActivityMainBinding
 import com.hd.clean_arch.ui.permissions.PermissionsActivity
-import com.hd.clean_arch.utils.viewModelOf
 import com.hd.presentation.main.MainNavigation
 import com.hd.presentation.main.MainViewModel
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
+@AndroidEntryPoint
 class MainActivity : ViewBindingActivity<ActivityMainBinding>() {
 
-    private val viewModelPermissions: MainViewModel by lazy { viewModelOf(mViewModelProvider) }
+    private val viewModelPermissions: MainViewModel by viewModels()
 
     override val bindingInflater: (layoutInflater: LayoutInflater) -> ActivityMainBinding
         get() = ActivityMainBinding::inflate
@@ -30,11 +32,6 @@ class MainActivity : ViewBindingActivity<ActivityMainBinding>() {
                 viewModelPermissions.dismissPermissions()
             }
         }
-
-    override fun inject() {
-        super.inject()
-        appComponent.inject(this)
-    }
 
     override fun onResume() {
         super.onResume()

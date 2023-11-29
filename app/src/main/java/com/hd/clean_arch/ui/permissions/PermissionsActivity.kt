@@ -10,26 +10,28 @@ import android.view.LayoutInflater
 import android.view.View
 import androidx.activity.addCallback
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.activity.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.hd.clean_arch.base.ViewBindingActivity
 import com.hd.clean_arch.databinding.ActivityPermissionsBinding
-import com.hd.clean_arch.utils.viewModelOf
 import com.hd.presentation.permissions.PermissionsNavigation
 import com.hd.presentation.permissions.PermissionsUiState
 import com.hd.presentation.permissions.PermissionsViewModel
 import com.hd.presentation.permissions.mapper.PermissionUI
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
+@AndroidEntryPoint
 class PermissionsActivity : ViewBindingActivity<ActivityPermissionsBinding>(),
     PermissionsAdapter.PermissionToggleListener {
 
     override val bindingInflater: (LayoutInflater) -> ActivityPermissionsBinding
         get() = ActivityPermissionsBinding::inflate
 
-    private val viewModelPermissions: PermissionsViewModel by lazy { viewModelOf(mViewModelProvider) }
+    private val viewModelPermissions: PermissionsViewModel by viewModels()
     private val permissionsAdapter = PermissionsAdapter(this)
 
     private val requestPermissionLauncher =
@@ -38,11 +40,6 @@ class PermissionsActivity : ViewBindingActivity<ActivityPermissionsBinding>(),
                 openAppSettings()
             }
         }
-
-    override fun inject() {
-        super.inject()
-        appComponent.inject(this)
-    }
 
     override fun setupUIElements() {
         super.setupUIElements()

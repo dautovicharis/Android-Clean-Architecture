@@ -15,6 +15,7 @@ object Dependencies {
             "androidx.constraintlayout:constraintlayout:${Versions.constraintLayoutVersion}"
         const val preferences = "androidx.preference:preference-ktx:${Versions.preferenceVersion}"
         const val javaxInject = "javax.inject:javax.inject:${Versions.javaxInjectVersion}"
+        const val activityKtx = "androidx.activity:activity-ktx:${Versions.activityKtxVersion}"
     }
 
     object Lifecycle {
@@ -24,8 +25,8 @@ object Dependencies {
     }
 
     object DI {
-        const val dagger = "com.google.dagger:dagger:${Versions.daggerVersion}"
-        const val daggerKapt = "com.google.dagger:dagger-compiler:${Versions.daggerVersion}"
+        const val hiltAndroid = "com.google.dagger:hilt-android:${Versions.hiltAndroidVersion}"
+        const val hiltCompiler = "com.google.dagger:hilt-compiler:${Versions.hiltCompilerVersion}"
     }
 
     object Coroutines {
